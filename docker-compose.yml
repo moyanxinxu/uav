@@ -1,0 +1,50 @@
+services:
+  backend:
+    image: rust:1.93.0-slim
+    depends_on:
+      - database
+    ports:
+      - "5001:5001"
+      # - "22:22"
+    volumes:
+      - ./backend:/root/backend
+    working_dir: /root/backend
+    command: cargo run
+    restart: always
+    networks:
+      - uav
+  frontend:
+    image: node:20-alpine
+    depends_on:
+      - database
+      - backend
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./frontend:/root/frontend
+    working_dir: /root/frontend
+    command: sh -c "npm install && npm run dev"
+    environment:
+      - HOST=0.0.0.0
+    networks:
+      - uav
+
+  database:
+    image: mysql:8.0
+    environment:
+      - MYSQL_ROOT_PASSWORD=moyanxinxu
+      - MYSQL_DATABASE=uav
+      - MYSQL_USER=moyanxinxu
+      - MYSQL_PASSWORD=moyanxinxu
+    ports:
+      - "3306:3306"
+    volumes:
+      - ./save/mysql:/var/lib/mysql
+      - ./backend/scripts/init.sql:/docker-entrypoint-initdb.d/init.sql
+    restart: always
+    networks:
+      - uav
+
+networks:
+  uav:
+    driver: bridge

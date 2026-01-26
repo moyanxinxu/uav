@@ -1,0 +1,8 @@
+node_modules/
+dist/
+build/
+save/
+*.log
+backend/target/
+fronted/.next/
+.DS_Store
