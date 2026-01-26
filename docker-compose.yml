@@ -8,11 +8,14 @@ services:
       # - "22:22"
     volumes:
       - ./backend:/root/backend
+      - /vscode-server:/root/.vscode-server
     working_dir: /root/backend
     command: cargo run
+    # command:  tail -f /dev/null
     restart: always
     networks:
       - uav
+
   frontend:
     image: node:20-alpine
     depends_on:
@@ -22,8 +25,10 @@ services:
       - "3000:3000"
     volumes:
       - ./frontend:/root/frontend
+      - /vscode-server:/root/.vscode-server
     working_dir: /root/frontend
     command: sh -c "npm install && npm run dev"
+    # command: sh -c "npm install && tail -f /dev/null"
     environment:
       - HOST=0.0.0.0
     networks:
