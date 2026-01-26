@@ -1,0 +1,9 @@
+[submodule "backend"]
+	path = backend
+	url = https://github.com/moyanxinxu/uav-backend.git
+[submodule "frontend"]
+	path = frontend
+	url = https://github.com/moyanxinxu/uav-fronted.git
+[submodule "fronted"]
+	path = fronted
+	url = https://github.com/moyanxinxu/uav-frontend.git
