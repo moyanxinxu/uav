@@ -1,8 +1,8 @@
 services:
   backend:
     image: rust:1.93.0-slim
-    depends_on:
-      - database
+    # depends_on:
+    #   - database
     ports:
       - "5001:5001"
       # - "22:22"
