@@ -16,7 +16,7 @@ services:
       - uav
 
   frontend:
-    image: node:20-alpine
+    image: oven/bun:latest
     depends_on:
       # - database
       - backend
@@ -25,7 +25,7 @@ services:
     volumes:
       - ./frontend:/root/frontend
     working_dir: /root/frontend
-    command: sh -c "npm install && npm run dev"
+    command: sh -c "bun install && bun dev"
     # command: sh -c "npm install && tail -f /dev/null"
     environment:
       - HOST=0.0.0.0
