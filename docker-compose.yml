@@ -18,7 +18,7 @@ services:
   frontend:
     image: node:20-alpine
     depends_on:
-      - database
+      # - database
       - backend
     ports:
       - "3000:3000"
@@ -32,21 +32,21 @@ services:
     networks:
       - uav
 
-  database:
-    image: mysql:8.0
-    environment:
-      - MYSQL_ROOT_PASSWORD=moyanxinxu
-      - MYSQL_DATABASE=uav
-      - MYSQL_USER=moyanxinxu
-      - MYSQL_PASSWORD=moyanxinxu
-    ports:
-      - "3306:3306"
-    volumes:
-      - ./save/mysql:/var/lib/mysql
-      - ./backend/scripts/init.sql:/docker-entrypoint-initdb.d/init.sql
-    restart: always
-    networks:
-      - uav
+  # database:
+  #   image: mysql:8.0
+  #   environment:
+  #     - MYSQL_ROOT_PASSWORD=moyanxinxu
+  #     - MYSQL_DATABASE=uav
+  #     - MYSQL_USER=moyanxinxu
+  #     - MYSQL_PASSWORD=moyanxinxu
+  #   ports:
+  #     - "3306:3306"
+  #   volumes:
+  #     - ./save/mysql:/var/lib/mysql
+  #     - ./backend/scripts/init.sql:/docker-entrypoint-initdb.d/init.sql
+  #   restart: always
+  #   networks:
+  #     - uav
 
 networks:
   uav:
