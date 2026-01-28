@@ -7,3 +7,4 @@ backend/target/
 fronted/.next/
 .DS_Store
 tauri-app
+Cargo.lock

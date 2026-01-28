@@ -1,0 +1,12 @@
+FROM rust:1.93.0-slim
+
+WORKDIR /root/backend
+
+COPY ./backend/ ./
+
+RUN cargo fetch
+
+EXPOSE 5001
+
+# 设置默认命令，启动容器时不执行任何操作
+CMD ["tail", "-f", "/dev/null"]
